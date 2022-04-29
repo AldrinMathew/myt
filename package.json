@@ -12,6 +12,10 @@
     "url": "https://github.com/AldrinMathew"
   },
   "publisher": "aldrinmathew",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AldrinMathew/myt.git"
+  },
   "categories": [
     "Keymaps",
     "Other"
