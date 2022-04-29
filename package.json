@@ -11,14 +11,52 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:myt.helloWorld"
+    "onCommand:myt.moveCursor"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "myt.helloWorld",
-        "title": "Hello World"
+        "command": "myt.moveCursor",
+        "title": "Move cursor"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "myt.moveCursor",
+        "when": "editorTextFocus",
+        "key": "alt+i",
+        "args": {
+          "line": -1,
+          "char": 0
+        }
+      },
+      {
+        "command": "myt.moveCursor",
+        "when": "editorTextFocus",
+        "key": "alt+k",
+        "args": {
+          "line": 1,
+          "char": 0
+        }
+      },
+      {
+        "command": "myt.moveCursor",
+        "when": "editorTextFocus",
+        "key": "alt+j",
+        "args": {
+          "line": 0,
+          "char": -1
+        }
+      },
+      {
+        "command": "myt.moveCursor",
+        "when": "editorTextFocus",
+        "key": "alt+l",
+        "args": {
+          "line": 0,
+          "char": 1
+        }
       }
     ]
   },
