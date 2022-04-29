@@ -60,10 +60,53 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	/**
+	 * Moves the cursor to either end of the current word
+	 * 
+	 * 
+	 */
+	let cursorToWordExtremesDisposable = vscode.commands.registerCommand('myt.moveCursorToWordExtremes', (args) => {
+		const isForward = args.isForward ?? false;
+		const editor = vscode.window.activeTextEditor;
+		if (!editor) {
+			return;
+		}
+		const positionDifference = (a: vscode.Position, b: vscode.Position) => {
+			return { line: a.line - b.line, character: a.character - b.character };
+		};
+
+		editor.selections = editor.selections.map(
+			(prev) => {
+				if (vscode.window.activeTextEditor) {
+					const wordRange = vscode.window.activeTextEditor.document.getWordRangeAtPosition(prev.active);
+					if (wordRange) {
+						const anchorEndVal = positionDifference(wordRange.end, prev.anchor);
+						const anchorStartVal = positionDifference(wordRange.start, prev.anchor);
+						const activeEndVal = positionDifference(wordRange.end, prev.active);
+						const activeStartVal = positionDifference(wordRange.start, prev.active);
+						return new vscode.Selection(
+							prev.anchor.isEqual(prev.active)
+								? prev.anchor.translate(
+									(isForward ? anchorEndVal : anchorStartVal).line,
+									(isForward ? anchorEndVal : anchorStartVal).character
+								) : prev.anchor,
+							prev.active.translate(
+								(isForward ? activeEndVal : activeStartVal).line,
+								(isForward ? activeEndVal : activeStartVal).character
+							)
+						);
+					}
+				}
+				return prev;
+			}
+		);
+	});
+
+	/**
 	 * These subscriptions will be cleared automatically by vscode
 	 * when the extension is deactivated
 	 */
 	context.subscriptions.push(moveCursorDisposable);
+	context.subscriptions.push(cursorToWordExtremesDisposable);
 }
 
 // this method is called when your extension is deactivated

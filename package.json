@@ -11,7 +11,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:myt.moveCursor"
+    "onCommand:myt.moveCursor",
+    "onCommand:myt.moveCursorToWordExtremes"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -56,6 +57,22 @@
         "args": {
           "line": 0,
           "char": 1
+        }
+      },
+      {
+        "command": "myt.moveCursorToWordExtremes",
+        "when": "editorTextFocus",
+        "key": "alt+h",
+        "args": {
+          "isForward": false
+        }
+      },
+      {
+        "command": "myt.moveCursorToWordExtremes",
+        "when": "editorTextFocus",
+        "key": "alt+;",
+        "args": {
+          "isForward": true
         }
       }
     ]
