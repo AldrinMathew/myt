@@ -1,15 +1,22 @@
 {
   "name": "myt",
   "displayName": "Myt",
-  "description": "Faster workflows...",
-  "version": "0.0.1",
+  "description": "Faster navigation and simpler development",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.66.0"
   },
+  "author": {
+    "name": "Aldrin Mathew",
+    "email": "admin@aldrinmathew.com",
+    "url": "https://github.com/AldrinMathew"
+  },
   "publisher": "aldrinmathew",
   "categories": [
+    "Keymaps",
     "Other"
   ],
+  "license": "./LICENSE",
   "activationEvents": [
     "onCommand:myt.moveCursor",
     "onCommand:myt.moveCursorToWordExtremes"
